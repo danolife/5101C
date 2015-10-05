@@ -54,24 +54,17 @@ namespace Projet_IMA
             /*Couleur Green = new Couleur(0.0f, 1.0f, 0.0f);
             Couleur Red = new Couleur(1.0f, 0.0f, 0.0f);*/
 
+            ZBuffer.init();
+
             V3 L = new V3(1.0f, -1.0f, 1.0f);
             Couleur C_ambiant = new Couleur(0.2f, 0.2f, 0.2f);
             Couleur C_lampe = new Couleur(0.8f, 0.8f, 0.8f);
-
-            double[,] zbuffer = new double[957,569];
-            for (int i = 0; i < zbuffer.GetLength(0); i++)
-            {
-                for (int j = 0; j < zbuffer.GetLength(1); j++)
-                {
-                    zbuffer[i, j] = double.MaxValue;
-                }
-            }
             
             Texture T_gold = new Texture("carreau.jpg");
-            //Texture T_lead = new Texture("lead.jpg");
+            Texture T_lead = new Texture("lead.jpg");
 
-            Draw.DrawSphere(300, 0, 300, 200, T_gold, C_ambiant, C_lampe, ref zbuffer, L);
-            //Draw.DrawSphere(450, 0, 200, 100, T_lead, C_ambiant, C_lampe, ref zbuffer, L);
+            Draw.DrawSphere(300, 0, 300, 200, T_gold, C_ambiant, C_lampe, L);
+            Draw.DrawSphere(450, 0, 200, 100, T_lead, C_ambiant, C_lampe, L);
             
         }
     }

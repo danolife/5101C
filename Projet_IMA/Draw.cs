@@ -6,7 +6,7 @@ namespace Projet_IMA
     static class Draw
     {
 
-        public static void DrawSphere(int x_center, int y_center, int z_center, int r, Texture T, Couleur C_ambiant, Couleur C_lampe, ref double[,] zbuffer, V3 L)
+        public static void DrawSphere(int x_center, int y_center, int z_center, int r, Texture T, Couleur C_ambiant, Couleur C_lampe, V3 L)
         {
             double pas = 0.005;
             Couleur final_diff, final_spec;
@@ -25,10 +25,10 @@ namespace Projet_IMA
                     double z = r * Math.Sin(v);
                     int x_ecran = (int)x + x_center;
                     int z_ecran = (int)z + z_center;
-                    if (y < zbuffer[x_ecran, z_ecran])
+                    if (y < ZBuffer.zbuffer[x_ecran, z_ecran])
                     {
                         /* UPDATE ZBUFFER */
-                        zbuffer[x_ecran, z_ecran] = y;
+                        ZBuffer.zbuffer[x_ecran, z_ecran] = y;
                         V3 N = new V3((float)x, (float)y, (float)z); //ne pas toucher 
 
                         /* BUMP MAP */
