@@ -60,12 +60,17 @@ namespace Projet_IMA
             Couleur C_ambiant = new Couleur(0.2f, 0.2f, 0.2f);
             Couleur C_lampe = new Couleur(0.8f, 0.8f, 0.8f);
             
-            Texture T_gold = new Texture("carreau.jpg");
+            Texture T_carreau = new Texture("carreau.jpg");
             Texture T_lead = new Texture("lead.jpg");
+            Texture T_bump = new Texture("bump38.jpg");
 
-            Draw.DrawSphere(300, 0, 300, 200, T_gold, C_ambiant, C_lampe, L);
-            Draw.DrawSphere(450, 0, 200, 100, T_lead, C_ambiant, C_lampe, L);
-            
+            //Draw.DrawSphere(300, 0, 300, 200, T_carreau, C_ambiant, C_lampe, L);
+            //Draw.DrawSphere(450, 0, 200, 100, T_lead, C_ambiant, C_lampe, L);
+            Sphere s1 = new Sphere(300, 0, 300, 200, T_carreau, T_bump);
+            Sphere s2 = new Sphere(450, 0, 200, 100, T_lead, null);
+            s1.Draw(C_ambiant, C_lampe, L);
+            s2.Draw(C_ambiant, C_lampe, L);
+
         }
     }
 }

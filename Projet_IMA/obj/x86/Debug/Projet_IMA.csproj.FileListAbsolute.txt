@@ -1,8 +1,8 @@
-C:\Users\Dany\Documents\Visual Studio 2013\Projects\Projet_IMA_CS\BUZER5101C_12_koeppela\Projet_IMA_CS\core_proj_esiee\Projet_IMA\bin\Debug\Projet_IMA.exe
-C:\Users\Dany\Documents\Visual Studio 2013\Projects\Projet_IMA_CS\BUZER5101C_12_koeppela\Projet_IMA_CS\core_proj_esiee\Projet_IMA\bin\Debug\Projet_IMA.pdb
-C:\Users\Dany\Documents\Visual Studio 2013\Projects\Projet_IMA_CS\BUZER5101C_12_koeppela\Projet_IMA_CS\core_proj_esiee\Projet_IMA\obj\x86\Debug\Projet_IMA.csprojResolveAssemblyReference.cache
 C:\Users\Dany\Documents\Visual Studio 2013\Projects\Projet_IMA_CS\BUZER5101C_12_koeppela\Projet_IMA_CS\core_proj_esiee\Projet_IMA\obj\x86\Debug\Projet_IMA.Form1.resources
 C:\Users\Dany\Documents\Visual Studio 2013\Projects\Projet_IMA_CS\BUZER5101C_12_koeppela\Projet_IMA_CS\core_proj_esiee\Projet_IMA\obj\x86\Debug\Projet_IMA.Properties.Resources.resources
 C:\Users\Dany\Documents\Visual Studio 2013\Projects\Projet_IMA_CS\BUZER5101C_12_koeppela\Projet_IMA_CS\core_proj_esiee\Projet_IMA\obj\x86\Debug\Projet_IMA.csproj.GenerateResource.Cache
+C:\Users\Dany\Documents\Visual Studio 2013\Projects\Projet_IMA_CS\BUZER5101C_12_koeppela\Projet_IMA_CS\core_proj_esiee\Projet_IMA\obj\x86\Debug\Projet_IMA.csprojResolveAssemblyReference.cache
+C:\Users\Dany\Documents\Visual Studio 2013\Projects\Projet_IMA_CS\BUZER5101C_12_koeppela\Projet_IMA_CS\core_proj_esiee\Projet_IMA\bin\Debug\Projet_IMA.exe
+C:\Users\Dany\Documents\Visual Studio 2013\Projects\Projet_IMA_CS\BUZER5101C_12_koeppela\Projet_IMA_CS\core_proj_esiee\Projet_IMA\bin\Debug\Projet_IMA.pdb
 C:\Users\Dany\Documents\Visual Studio 2013\Projects\Projet_IMA_CS\BUZER5101C_12_koeppela\Projet_IMA_CS\core_proj_esiee\Projet_IMA\obj\x86\Debug\Projet_IMA.exe
 C:\Users\Dany\Documents\Visual Studio 2013\Projects\Projet_IMA_CS\BUZER5101C_12_koeppela\Projet_IMA_CS\core_proj_esiee\Projet_IMA\obj\x86\Debug\Projet_IMA.pdb

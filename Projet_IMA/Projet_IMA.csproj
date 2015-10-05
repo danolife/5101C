@@ -64,7 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Couleur.cs" />
-    <Compile Include="Draw.cs" />
     <Compile Include="Ecran.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -73,7 +72,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Objet3D.cs" />
-    <Compile Include="Rectangle.cs" />
+    <Compile Include="Rect.cs" />
     <Compile Include="Sphere.cs" />
     <Compile Include="Trigo_InvertCoordSpherique.cs" />
     <Compile Include="Program.cs" />

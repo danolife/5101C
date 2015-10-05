@@ -9,8 +9,9 @@ namespace Projet_IMA
     {
         int largeur, hauteur;
 
-        /*public override void Draw() {
+        public override void Draw(Couleur C_ambiant, Couleur C_lampe, V3 L)
+        {
             
-        }*/
+        }
     }
 }

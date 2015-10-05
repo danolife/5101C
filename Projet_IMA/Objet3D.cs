@@ -7,9 +7,9 @@ namespace Projet_IMA
 {
     abstract class Objet3D
     {
-        int x_center, y_center, z_center;
-        Texture T;
+        public int x_center, y_center, z_center;
+        public Texture T, T_bump;
 
-        //public abstract void Draw();
+        abstract public void Draw(Couleur C_ambiant, Couleur C_lampe, V3 L);
     }
 }
