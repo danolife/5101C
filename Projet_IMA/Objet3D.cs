@@ -7,8 +7,9 @@ namespace Projet_IMA
 {
     abstract class Objet3D
     {
-        public int x_center, y_center, z_center;
-        public Texture T, T_bump;
+        protected V3 origin; //un des coins du rectangle, ou le centre de la sphere
+        protected Texture T, T_bump;
+        protected double pas;
 
         abstract public void Draw(Couleur C_ambiant, Couleur C_lampe, V3 L);
     }

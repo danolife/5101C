@@ -8,17 +8,14 @@ namespace Projet_IMA
     class Sphere : Objet3D
     {
         int rayon;
-        double pas;
         int k;
         float bump_coeff;
 
-        public Sphere(int x_center, int y_center, int z_center, int rayon, Texture T, Texture T_bump)
+        public Sphere(V3 center, int rayon, Texture T, Texture T_bump)
         {
             pas = 0.005;
             k = 30;
-            this.x_center = x_center;
-            this.y_center = y_center;
-            this.z_center = z_center;
+            this.origin = center;
             this.rayon = rayon;
             this.T = T;
             this.T_bump = T_bump;
@@ -40,8 +37,8 @@ namespace Projet_IMA
                     double x = rayon * Math.Cos(v) * Math.Cos(u);
                     double y = rayon * Math.Cos(v) * Math.Sin(u);
                     double z = rayon * Math.Sin(v);
-                    int x_ecran = (int)x + x_center;
-                    int z_ecran = (int)z + z_center;
+                    int x_ecran = (int)x + (int)origin.x;
+                    int z_ecran = (int)z + (int)origin.z;
                     if (y < ZBuffer.zbuffer[x_ecran, z_ecran])
                     {
                         /* UPDATE ZBUFFER */
