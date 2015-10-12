@@ -68,7 +68,7 @@ namespace Projet_IMA
             s1.Draw(C_ambiant, C_lampe, L);
             s2.Draw(C_ambiant, C_lampe, L);*/
 
-            Rect r1 = new Rect(new V3(100, 0, 100), new V3(100, 0, 0), new V3(0, 70, 70), new V3(0.0f, 0.0f, 0.0f), null, null);
+            Rect r1 = new Rect(new V3(100, 0, 100), new V3(300, 0, 100), new V3(-100, 0, 200), new V3(0.0f, 0.0f, 0.0f), new Texture("carreau.jpg"), null);
             //Rect r2 = new Rect(new V3(100, 0, 100), new V3(100, 0, 0), new V3(100, 0, 100), new V3(0.0f, 0.0f, 0.0f), null, null);
             r1.Draw(C_ambiant, C_lampe, L);
             //r2.Draw(C_ambiant, C_lampe, L);
