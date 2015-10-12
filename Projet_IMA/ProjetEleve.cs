@@ -62,14 +62,16 @@ namespace Projet_IMA
 
             Texture T_bump = new Texture("bump38.jpg");
 
-            /*
-            Sphere s1 = new Sphere(new V3(300, 0, 300), 200, new Texture("carreau.jpg"), T_bump);
+            
+            /*Sphere s1 = new Sphere(new V3(300, 0, 300), 200, new Texture("carreau.jpg"), T_bump);
             Sphere s2 = new Sphere(new V3(450, 0, 200), 100, new Texture("lead.jpg"), null);
             s1.Draw(C_ambiant, C_lampe, L);
-            s2.Draw(C_ambiant, C_lampe, L);
-            */
-            Rect r1 = new Rect(new V3(100, 0, 100), new V3(100, 0, 100), new V3(-100, 0, 100), new V3(0.0f, 0.0f, 0.0f), null, null);
+            s2.Draw(C_ambiant, C_lampe, L);*/
+
+            Rect r1 = new Rect(new V3(100, 0, 100), new V3(100, 0, 0), new V3(0, 70, 70), new V3(0.0f, 0.0f, 0.0f), null, null);
+            //Rect r2 = new Rect(new V3(100, 0, 100), new V3(100, 0, 0), new V3(100, 0, 100), new V3(0.0f, 0.0f, 0.0f), null, null);
             r1.Draw(C_ambiant, C_lampe, L);
+            //r2.Draw(C_ambiant, C_lampe, L);
         }
     }
 }

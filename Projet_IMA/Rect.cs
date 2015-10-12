@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Diagnostics;
 
 namespace Projet_IMA
 {
@@ -29,14 +30,16 @@ namespace Projet_IMA
                     BitmapEcran.DrawPixel(i, j, new Couleur(1.0f, 1.0f, 1.0f));
                 }
             }*/
-                // 4 sommets : origin, origin + L1, origin + L2, origin + L1 + L2
-                for (V3 u = origin; (u.x <= origin.x + Math.Abs(L1.x)) && (u.y <= origin.y + Math.Abs(L1.y)) && (u.z <= origin.z + Math.Abs(L1.z)); u += (L1 * (float)pas))
+            L1 = (new V3(0.0f, 1.0f, 0.0f)) ^ (L1 ^ (new V3(0.0f, 1.0f, 0.0f)));
+            L2 = (new V3(0.0f, 1.0f, 0.0f)) ^ (L2 ^ (new V3(0.0f, 1.0f, 0.0f)));
+            // 4 sommets : origin, origin + L1, origin + L2, origin + L1 + L2
+            for (V3 u = origin; (u.x <= origin.x + Math.Abs(L1.x)) && (u.y <= origin.y + Math.Abs(L1.y)) && (u.z <= origin.z + Math.Abs(L1.z)); u += (L1 * (float)pas))
+            {
+                for (V3 v = new V3(0.0f, 0.0f, 0.0f); (v.x <= Math.Abs(L2.x)) && (v.y <= origin.y + Math.Abs(L2.y)) && (v.z <=Math.Abs(L2.z)); v += (L2 * (float)pas))
                 {
-                    for (V3 v = new V3(0.0f, 0.0f, 0.0f); (v.x <= Math.Abs(L2.x)) && (v.y <= origin.y + Math.Abs(L2.y)) && (v.z <=Math.Abs(L2.z)); v += (L2 * (float)pas))
-                    {
-                        BitmapEcran.DrawPixel((int)(u.x + v.x), (int)(u.z + v.z), new Couleur(1.0f, 1.0f, 1.0f));
-                    }
+                    BitmapEcran.DrawPixel((int)(u.x + v.x), (int)(u.z + v.z), new Couleur(1.0f, 1.0f, 1.0f));
                 }
+            }
         }
     }
 }
