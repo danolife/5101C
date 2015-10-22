@@ -22,10 +22,11 @@ namespace Projet_IMA
             this.bump_coeff = 0.005f;
         }
 
-        public override void Draw(Couleur C_ambiant, Couleur C_lampe, V3 L)
+        public override void Draw(Couleur C_ambiant, Lumiere L)
         { 
             float cosln;
             Couleur final_ambiant, final_diff, final_spec;
+            Couleur C_lampe = L.getClampe();
 
             for (double u = 0; u < 2 * Math.PI; u += pas)
             {
@@ -39,10 +40,8 @@ namespace Projet_IMA
                     double z = rayon * Math.Sin(v);
                     int x_ecran = (int)x + (int)origin.x;
                     int z_ecran = (int)z + (int)origin.z;
-                    if (y < ZBuffer.zbuffer[x_ecran, z_ecran])
+                    if (ZBuffer.test(y, x_ecran, z_ecran))
                     {
-                        /* UPDATE ZBUFFER */
-                        ZBuffer.zbuffer[x_ecran, z_ecran] = y;
                         V3 N = new V3((float)x, (float)y, (float)z); //ne pas toucher 
 
                         /* BUMP MAP */
@@ -62,14 +61,14 @@ namespace Projet_IMA
 
                         /* DIFFUS */
                         N.Normalize();
-                        L.Normalize();
-                        cosln = L * N;
+                        L.getDirection().Normalize();
+                        cosln = L.getDirection() * N;
                         cosln = cosln < 0 ? 0 : cosln;
                         final_diff = C_obj * C_lampe * cosln;
                         /* FIN DIFFUS */
 
                         /* SPECULAIRE */
-                        V3 S = 2 * N * cosln - L;
+                        V3 S = 2 * N * cosln - L.getDirection();
                         S.Normalize();
                         V3 O = new V3((float)x, (float)y, (float)z);
                         V3 camera = new V3(200, -1000, 200);

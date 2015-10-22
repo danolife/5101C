@@ -11,22 +11,23 @@ namespace Projet_IMA
         {
             ZBuffer.init();
 
-            V3 L = new V3(1.0f, -1.0f, 1.0f);
+            Lumiere L = new Lumiere(0, new V3(1.0f, -1.0f, 1.0f), new V3(0.0f, 0.0f, 0.0f), new Couleur(0.8f, 0.8f, 0.8f));
+
             Couleur C_ambiant = new Couleur(0.2f, 0.2f, 0.2f);
             Couleur C_lampe = new Couleur(0.8f, 0.8f, 0.8f);
 
             Texture T_bump = new Texture("bump38.jpg");
 
             
-            //Sphere s1 = new Sphere(new V3(300, 0, 300), 200, new Texture("aymeric.jpg"), null);
-            //Sphere s2 = new Sphere(new V3(450, 0, 200), 100, new Texture("lead.jpg"), null);
-            //s1.Draw(C_ambiant, C_lampe, L);
-            //s2.Draw(C_ambiant, C_lampe, L);
+            Sphere s1 = new Sphere(new V3(300, 0, 300), 200, new Texture("carreau.jpg"), T_bump);
+            Sphere s2 = new Sphere(new V3(450, 0, 200), 100, new Texture("lead.jpg"), null);
+            s1.Draw(C_ambiant, L);
+            s2.Draw(C_ambiant, L);
 
-            //Rect r1 = new Rect(new V3(150, 0, 150), new V3(300, 0, 0), new V3(0, 0, 300), new Texture("carreau.jpg"), null);
+            //Rect r1 = new Rect(new V3(150, 0, 150), new V3(300, 0, 0), new V3(0, 0, 300), new Texture("carreau.jpg"), T_bump);
             //Rect r2 = new Rect(new V3(100, 0, 100), new V3(100, 0, 0), new V3(100, 0, 100), null, null);
-            //r1.Draw(C_ambiant, C_lampe, L);
-            //r2.Draw(C_ambiant, C_lampe, L);
+            //r1.Draw(C_ambiant, L);
+            //r2.Draw(C_ambiant, L);
         }
     }
 }

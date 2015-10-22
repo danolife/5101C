@@ -7,17 +7,18 @@ namespace Projet_IMA
 {
     class Lumiere : Lampe // fille
     {
-        int type;
-        V3 position;
-
         public Lumiere(){
             type = 0;
-            position = new V3(0.0f,0.0f,0.0f);
+            direction = new V3(0.0f,0.0f,0.0f);
+            position = new V3(0.0f, 0.0f, 0.0f);
+            C_lampe = new Couleur(1.0f, 1.0f, 1.0f);
         }
 
-        public Lumiere(int pType, V3 pPosition){
-            type = pType;
-            position = pPosition;
+        public Lumiere(int pType, V3 pDirection, V3 pPosition, Couleur pC_lampe){
+            this.type = pType;
+            this.direction = pDirection;
+            this.position = pPosition;
+            this.C_lampe = pC_lampe;
         }
     }
 }

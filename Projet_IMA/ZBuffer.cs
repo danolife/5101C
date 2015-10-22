@@ -19,5 +19,18 @@ namespace Projet_IMA
                 }
             }
         }
+
+        public static bool test(double y, int x_ecran, int z_ecran)
+        {
+            if (x_ecran < zbuffer.GetLength(0) && z_ecran < zbuffer.GetLength(1))
+            {
+                if (y < ZBuffer.zbuffer[x_ecran, z_ecran])
+                {
+                    ZBuffer.zbuffer[x_ecran, z_ecran] = y;
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

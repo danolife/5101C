@@ -25,10 +25,11 @@ namespace Projet_IMA
             this.bump_coeff = 0.005f;
         }
 
-        public override void Draw(Couleur C_ambiant, Couleur C_lampe, V3 L)
+        public override void Draw(Couleur C_ambiant, Lumiere L)
         {
             float cosln;
             Couleur final_ambiant, final_diff, final_spec;
+            Couleur C_lampe = L.getClampe();
 
             //L1 = (new V3(0.0f, 1.0f, 0.0f)) ^ (L1 ^ (new V3(0.0f, 1.0f, 0.0f)));
             //L2 = (new V3(0.0f, 1.0f, 0.0f)) ^ (L2 ^ (new V3(0.0f, 1.0f, 0.0f)));
@@ -48,11 +49,8 @@ namespace Projet_IMA
                     Couleur C_obj = T.LireCouleur((float)(u.Norm() / L1.Norm()), (float)(v.Norm() / L2.Norm()));
                     final_ambiant = C_obj * C_ambiant;
 
-                    if (y < ZBuffer.zbuffer[x_ecran, z_ecran])
+                    if (ZBuffer.test(y, x_ecran, z_ecran))
                     {
-                        /* UPDATE ZBUFFER */
-                        ZBuffer.zbuffer[x_ecran, z_ecran] = y;
-
                         /* BUMP MAP */
                         V3 Np = N;
                         if (T_bump != null)
@@ -66,14 +64,14 @@ namespace Projet_IMA
 
                         /* DIFFUS */
                         Np.Normalize();
-                        L.Normalize();
-                        cosln = L * Np;
+                        L.getDirection().Normalize();
+                        cosln = L.getDirection() * Np;
                         cosln = cosln < 0 ? 0 : cosln;
                         final_diff = C_obj * C_lampe * cosln;
                         /* FIN DIFFUS */
 
                         /* SPECULAIRE */
-                        V3 S = 2 * Np * cosln - L;
+                        V3 S = 2 * Np * cosln - L.getDirection();
                         S.Normalize();
                         V3 O = new V3(x, y, z);
                         V3 camera = new V3(200, -1000, 200);
