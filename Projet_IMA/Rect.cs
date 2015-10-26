@@ -27,9 +27,9 @@ namespace Projet_IMA
 
         public override void Draw(Couleur C_ambiant, Lumiere L)
         {
-            float cosln;
-            Couleur final_ambiant, final_diff, final_spec;
-            Couleur C_lampe = L.getClampe();
+            //float cosln;
+            //Couleur final_ambiant, final_diff, final_spec;
+            //Couleur C_lampe = L.getClampe();
 
             //L1 = (new V3(0.0f, 1.0f, 0.0f)) ^ (L1 ^ (new V3(0.0f, 1.0f, 0.0f)));
             //L2 = (new V3(0.0f, 1.0f, 0.0f)) ^ (L2 ^ (new V3(0.0f, 1.0f, 0.0f)));
@@ -47,7 +47,7 @@ namespace Projet_IMA
                     int z_ecran = (int)z;
 
                     Couleur C_obj = T.LireCouleur((float)(u.Norm() / L1.Norm()), (float)(v.Norm() / L2.Norm()));
-                    final_ambiant = C_obj * C_ambiant;
+                    //final_ambiant = C_obj * C_ambiant;
 
                     if (ZBuffer.test(y, x_ecran, z_ecran))
                     {
@@ -62,27 +62,10 @@ namespace Projet_IMA
                         }
                         /* FIN BUMP MAP */
 
-                        /* DIFFUS */
-                        Np.Normalize();
-                        L.getDirection().Normalize();
-                        cosln = L.getDirection() * Np;
-                        cosln = cosln < 0 ? 0 : cosln;
-                        final_diff = C_obj * C_lampe * cosln;
-                        /* FIN DIFFUS */
-
-                        /* SPECULAIRE */
-                        V3 S = 2 * Np * cosln - L.getDirection();
-                        S.Normalize();
                         V3 O = new V3(x, y, z);
                         V3 camera = new V3(200, -1000, 200);
                         O = camera - O;
-                        O.Normalize();
-                        double cosso = S * O;
-                        final_spec = C_lampe * (float)Math.Pow(cosso, k);
-                        /* FIN SPECULAIRE */
-
-                        // COULEUR FINALE
-                        Couleur finalColor = final_ambiant + final_diff + final_spec;
+                        Couleur finalColor = computeLights(C_obj, C_ambiant, Np, O, L, k);
                         // ON DESSINE A L'ECRAN
                         BitmapEcran.DrawPixel(x_ecran, z_ecran, finalColor);
                     }

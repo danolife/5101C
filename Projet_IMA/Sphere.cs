@@ -44,7 +44,7 @@ namespace Projet_IMA
                     {
                         V3 N = new V3((float)x, (float)y, (float)z); //ne pas toucher 
 
-                        /* BUMP MAP */
+                        // BUMP MAP */
                         if (T_bump != null)
                         {
                             V3 dmdu = new V3((float)(-rayon * Math.Cos(v) * Math.Sin(u)),
@@ -57,30 +57,12 @@ namespace Projet_IMA
                             N = N + bump_coeff * ((dmdu ^ (N * dhdv)) + ((N * dhdu) ^ dmdv));
                         }
                         
-                        /* FIN BUMP MAP */
+                        // FIN BUMP MAP */
 
-                        /* DIFFUS */
-                        N.Normalize();
-                        L.getDirection().Normalize();
-                        cosln = L.getDirection() * N;
-                        cosln = cosln < 0 ? 0 : cosln;
-                        final_diff = C_obj * C_lampe * cosln;
-                        /* FIN DIFFUS */
-
-                        /* SPECULAIRE */
-                        V3 S = 2 * N * cosln - L.getDirection();
-                        S.Normalize();
                         V3 O = new V3((float)x, (float)y, (float)z);
                         V3 camera = new V3(200, -1000, 200);
                         O = camera - O;
-                        O.Normalize();
-                        double cosso = S * O;
-                        final_spec = C_lampe * (float)Math.Pow(cosso, k);
-                        /* FIN SPECULAIRE */
-
-                        // COULEUR FINALE
-                        Couleur finalColor = final_ambiant + final_diff + final_spec;
-                        // ON DESSINE A L'ECRAN
+                        Couleur finalColor = computeLights(C_obj, C_ambiant, N, O, L, k);
                         BitmapEcran.DrawPixel(x_ecran, z_ecran, finalColor);
                     }
                 }
