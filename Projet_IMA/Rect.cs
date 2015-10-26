@@ -25,7 +25,7 @@ namespace Projet_IMA
             this.bump_coeff = 0.005f;
         }
 
-        public override void Draw(Couleur C_ambiant, Lumiere L)
+        public override void Draw(Couleur C_ambiant, Lumiere L, V3 camera)
         {
             //float cosln;
             //Couleur final_ambiant, final_diff, final_spec;
@@ -63,7 +63,6 @@ namespace Projet_IMA
                         /* FIN BUMP MAP */
 
                         V3 O = new V3(x, y, z);
-                        V3 camera = new V3(200, -1000, 200);
                         O = camera - O;
                         Couleur finalColor = computeLights(C_obj, C_ambiant, Np, O, L, k);
                         // ON DESSINE A L'ECRAN

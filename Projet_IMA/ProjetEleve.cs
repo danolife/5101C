@@ -18,16 +18,17 @@ namespace Projet_IMA
 
             Texture T_bump = new Texture("bump38.jpg");
 
+            V3 camera = new V3(200, -1000, 200);
             
             Sphere s1 = new Sphere(new V3(300, 0, 300), 200, new Texture("carreau.jpg"), T_bump);
             Sphere s2 = new Sphere(new V3(450, 0, 200), 100, new Texture("lead.jpg"), null);
-            s1.Draw(C_ambiant, L);
-            s2.Draw(C_ambiant, L);
+            s1.Draw(C_ambiant, L, camera);
+            s2.Draw(C_ambiant, L, camera);
 
             //Rect r1 = new Rect(new V3(150, 0, 150), new V3(300, 0, 0), new V3(0, 0, 300), new Texture("carreau.jpg"), T_bump);
             //Rect r2 = new Rect(new V3(100, 0, 100), new V3(100, 0, 0), new V3(100, 0, 100), null, null);
-            //r1.Draw(C_ambiant, L);
-            //r2.Draw(C_ambiant, L);
+            //r1.Draw(C_ambiant, L, camera);
+            //r2.Draw(C_ambiant, L, camera);
         }
     }
 }

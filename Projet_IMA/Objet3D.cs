@@ -11,7 +11,7 @@ namespace Projet_IMA
         protected Texture T, T_bump;
         protected double pas;
 
-        abstract public void Draw(Couleur C_ambiant, Lumiere L);
+        abstract public void Draw(Couleur C_ambiant, Lumiere L, V3 camera);
 
         public Couleur computeLights(Couleur C_obj, Couleur C_ambiant, V3 N, V3 O, Lumiere L, int k)
         {
