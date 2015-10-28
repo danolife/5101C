@@ -7,7 +7,7 @@ namespace Projet_IMA
 {
     public static class ZBuffer
     {
-        public static double[,] zbuffer = new double[957, 569];
+        public static double[,] zbuffer = new double[BitmapEcran.GetWidth(), BitmapEcran.GetHeight()];
 
         public static void init()
         {

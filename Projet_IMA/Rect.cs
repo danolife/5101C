@@ -64,12 +64,21 @@ namespace Projet_IMA
 
                         V3 O = new V3(x, y, z);
                         O = camera - O;
-                        Couleur finalColor = computeLights(C_obj, C_ambiant, Np, O, L, k);
-                        // ON DESSINE A L'ECRAN
-                        BitmapEcran.DrawPixel(x_ecran, z_ecran, finalColor);
+                        /*Couleur finalColor = computeLights(C_obj, C_ambiant, Np, O, L, k);
+                        BitmapEcran.DrawPixel(x_ecran, z_ecran, finalColor);*/
                     }
                 }
             }
+        }
+
+        public override Couleur DrawPoint(Couleur C_ambiant, Lumiere L, V3 camera, V3 R)
+        {
+            return new Couleur(0f, 0f, 0f);
+        }
+
+        public override float getIntersect(V3 R, V3 cam)
+        {
+            return -1f;
         }
     }
 }

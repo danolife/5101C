@@ -74,6 +74,7 @@
     </Compile>
     <Compile Include="Lumiere.cs" />
     <Compile Include="Objet3D.cs" />
+    <Compile Include="Point.cs" />
     <Compile Include="Rect.cs" />
     <Compile Include="Sphere.cs" />
     <Compile Include="Trigo_InvertCoordSpherique.cs" />

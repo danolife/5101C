@@ -12,9 +12,17 @@ namespace Projet_IMA
         protected double pas;
 
         abstract public void Draw(Couleur C_ambiant, Lumiere L, V3 camera);
+        abstract public float getIntersect(V3 R, V3 cam);
+        abstract public Couleur DrawPoint(Couleur C_ambiant, Lumiere L, V3 camera, V3 R);
 
-        public Couleur computeLights(Couleur C_obj, Couleur C_ambiant, V3 N, V3 O, Lumiere L, int k)
+        public Couleur computeLights(Point I, Lumiere L)
         {
+            Couleur C_obj = I.C_obj;
+            Couleur C_ambiant = I.C_ambiant;
+            V3 N = I.N;
+            V3 O = I.O;
+            int k = I.k;
+
             float cosln;
             Couleur final_ambiant, final_diff, final_spec;
             final_ambiant = C_obj * C_ambiant;
