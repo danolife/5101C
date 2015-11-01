@@ -11,7 +11,7 @@ namespace Projet_IMA
         protected Texture T, T_bump;
         protected double pas;
 
-        abstract public void Draw(Couleur C_ambiant, Lumiere L, V3 camera);
+        //abstract public void Draw(Couleur C_ambiant, Lumiere L, V3 camera);
         abstract public float getIntersect(V3 R, V3 cam);
         abstract public Couleur DrawPoint(Couleur C_ambiant, Lumiere L, V3 camera, V3 R);
 

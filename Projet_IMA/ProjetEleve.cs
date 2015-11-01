@@ -20,22 +20,37 @@ namespace Projet_IMA
             Couleur C_lampe = new Couleur(0.8f, 0.8f, 0.8f);
 
             Texture T_bump = new Texture("bump38.jpg");
+            Texture T_leadbump = new Texture("lead_bump.jpg");
 
-            V3 camera = new V3(200, -1000, 200);
+            V3 camera = new V3(width/2, -1000, height/2);
 
             List<Objet3D> objlist = new List<Objet3D>();
 
-            Sphere s1 = new Sphere(new V3(300, 0, 300), 200, new Texture("carreau.jpg"), T_bump);
-            Sphere s2 = new Sphere(new V3(450, 0, 200), 100, new Texture("lead.jpg"), null);
+            Sphere s1 = new Sphere(new V3(width/2, 500, height-50), 150, new Texture("carreau.jpg"), T_bump);
+            Sphere s2 = new Sphere(new V3(50, 500, height/2), 150, new Texture("lead.jpg"), T_leadbump);
+            //fond
+            Rect r1 = new Rect(new V3(50, 1000, 50), new V3(width - 100, 0, 0), new V3(0, 0, height - 100), new Texture("aymeric.jpg"), null);
+            //bas
+            Rect r2 = new Rect(new V3(50, 0, 50), new V3(width - 100, 0, 0), new V3(0, 1000, 0), new Texture("stone2.jpg"), null);
+            //haut
+            Rect r3 = new Rect(new V3(width-50, 0, height-50), new V3(-(width-100), 0, 0), new V3(0, 1000, 0), new Texture("fibre.jpg"), null);
+            //gauche
+            Rect r4 = new Rect(new V3(50, 0, 50), new V3(0, 1000, 0), new V3(0, 0, height - 100), new Texture("brick01.jpg"), null);
+            //droite
+            Rect r5 = new Rect(new V3(width-50, 1000, 50), new V3(0, -1000, 0), new V3(0, 0, height - 100), new Texture("brick01.jpg"), null);
+            //milieu
+            Rect r6 = new Rect(new V3(width/2 + 100, 750, 50), new V3(0, -500, 0), new V3(0, 0, height/3), new Texture("brick01.jpg"), null);
             objlist.Add(s1);
             objlist.Add(s2);
+            objlist.Add(r1);
+            objlist.Add(r2);
+            objlist.Add(r3);
+            objlist.Add(r4);
+            objlist.Add(r5);
+            objlist.Add(r6);
 
             // RAY CASTING
-            //générer des ray
-                //parcourir la liste des objets
-                    //appeler leur fonction de test d'intersection
-                        //inv coordonnées
-                            // compute lights sur ce point de cet objet (->N)
+
             V3 Rd, R;
             //Point I;
             float t, tnew;
@@ -60,6 +75,7 @@ namespace Projet_IMA
                                 R = camera + t * Rd;
                                 Couleur finalColor = obj.DrawPoint(C_ambiant, L, camera, R);
                                 BitmapEcran.DrawPixel(pxx, pxz, finalColor);
+                                //Console.WriteLine("Drawing at " + pxx + " " + pxz);
                             }
                         }                          
 
@@ -73,8 +89,7 @@ namespace Projet_IMA
             //s1.Draw(C_ambiant, L, camera);
             //s2.Draw(C_ambiant, L, camera);
 
-            //Rect r1 = new Rect(new V3(150, 0, 150), new V3(300, 0, 0), new V3(0, 0, 300), new Texture("carreau.jpg"), T_bump);
-            //Rect r2 = new Rect(new V3(100, 0, 100), new V3(100, 0, 0), new V3(100, 0, 100), null, null);
+            
             //r1.Draw(C_ambiant, L, camera);
             //r2.Draw(C_ambiant, L, camera);
 
