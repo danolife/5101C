@@ -8,7 +8,7 @@ namespace Projet_IMA
     class Lumiere : Lampe // fille
     {
         public Lumiere(){
-            type = 0;
+            type = 0; // directional light
             direction = new V3(0.0f,0.0f,0.0f);
             position = new V3(0.0f, 0.0f, 0.0f);
             C_lampe = new Couleur(1.0f, 1.0f, 1.0f);

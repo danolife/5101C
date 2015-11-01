@@ -11,7 +11,7 @@ namespace Projet_IMA
         int k;
         float bump_coeff;
 
-        public Sphere(V3 center, int rayon, Texture T, Texture T_bump)
+        public Sphere(V3 center, int rayon, Texture T, Texture T_bump, float bump_coeff)
         {
             pas = 0.005;
             k = 30;
@@ -19,7 +19,7 @@ namespace Projet_IMA
             this.rayon = rayon;
             this.T = T;
             this.T_bump = T_bump;
-            this.bump_coeff = 0.005f;
+            this.bump_coeff = bump_coeff;
         }
 
         /*public override void Draw(Couleur C_ambiant, Lumiere L, V3 camera)
@@ -67,7 +67,7 @@ namespace Projet_IMA
             }
         }*/
 
-        public override Couleur DrawPoint(Couleur C_ambiant, List<Lampe> lampList, V3 camera, V3 R)
+        public override Couleur DrawPoint(Couleur C_ambiant, List<Lampe> lampList, V3 camera, V3 R, bool[] occs)
         {
 
             V3 N = R - this.origin;
@@ -95,7 +95,7 @@ namespace Projet_IMA
             // FIN BUMP MAP 
 
             Point I = new Point(C_obj, C_ambiant, N, O, this.k);
-            Couleur finalColor = computeLights(I, lampList);
+            Couleur finalColor = computeLights(I, lampList, occs);
             return finalColor;
         }
 

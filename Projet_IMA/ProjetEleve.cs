@@ -17,8 +17,8 @@ namespace Projet_IMA
 
             // LAMPES
             List<Lampe> lampList = new List<Lampe>();
-            lampList.Add(new Lumiere(0, new V3(1.0f, -1.0f, 1.0f), new V3(0.0f, 0.0f, 0.0f), new Couleur(0.4f, 0.4f, 0.4f)));
-            lampList.Add(new Lumiere(0, new V3(-1.0f, -1.0f, 1.0f), new V3(0.0f, 0.0f, 0.0f), new Couleur(0.4f, 0.4f, 0.4f)));
+            lampList.Add(new Lumiere(0, new V3(1f, -1f, 1f), new V3(0f, 0f, 0f), new Couleur(0.4f, 0.4f, 0.4f)));
+            lampList.Add(new Lumiere(0, new V3(-1f, -1f, 1f), new V3(0f, 0f, 0f), new Couleur(0.4f, 0.4f, 0.4f)));
 
             // TEXTURES
             Texture T_carreau = new Texture("carreau.jpg");
@@ -27,37 +27,40 @@ namespace Projet_IMA
             Texture T_stone = new Texture("stone2.jpg");
             Texture T_fibre = new Texture("fibre.jpg");
             Texture T_brick = new Texture("brick01.jpg");
-
+            Texture T_gold = new Texture("gold.jpg");
             // BUMP TEXTURES
             Texture T_bump = new Texture("bump38.jpg");
             Texture T_leadbump = new Texture("lead_bump.jpg");
 
 
             // OBJETS
-            List<Objet3D> objlist = new List<Objet3D>();
+            List<Objet3D> objList = new List<Objet3D>();
 
             //SPHERES
-            objlist.Add(new Sphere(new V3(width / 2, 500, height - 50), 150, T_carreau, T_bump));
-            objlist.Add(new Sphere(new V3(50, 500, height/2), 150, T_lead, T_leadbump));
+            objList.Add(new Sphere(new V3(width / 2, 500, height - 50), 150, T_carreau, T_bump, 0.008f));
+            objList.Add(new Sphere(new V3(50, 500, height / 2), 150, T_lead, T_leadbump, 0.01f));
+            objList.Add(new Sphere(new V3(175, 300, height / 2 + 75), 50, T_gold, T_bump, 0.1f));
             //RECTS
             //fond
-            objlist.Add(new Rect(new V3(50, 1000, 50), new V3(width - 100, 0, 0), new V3(0, 0, height - 100), T_Aymeric, null));
+            objList.Add(new Rect(new V3(50, 1000, 50), new V3(width - 100, 0, 0), new V3(0, 0, height - 100), T_brick, null));
             //bas
-            objlist.Add(new Rect(new V3(50, 0, 50), new V3(width - 100, 0, 0), new V3(0, 1000, 0), T_stone, null));
+            objList.Add(new Rect(new V3(50, 0, 50), new V3(width - 100, 0, 0), new V3(0, 1000, 0), T_stone, null));
             //haut
-            objlist.Add(new Rect(new V3(width-50, 0, height-50), new V3(-(width-100), 0, 0), new V3(0, 1000, 0), T_fibre, null));
+            //objList.Add(new Rect(new V3(width-50, 0, height-50), new V3(-(width-100), 0, 0), new V3(0, 1000, 0), T_fibre, null));
             //gauche
-            objlist.Add(new Rect(new V3(50, 0, 50), new V3(0, 1000, 0), new V3(0, 0, height - 100), T_brick, null));
+            objList.Add(new Rect(new V3(50, 0, 50), new V3(0, 1000, 0), new V3(0, 0, height - 100), T_brick, null));
             //droite
-            objlist.Add(new Rect(new V3(width - 50, 1000, 50), new V3(0, -1000, 0), new V3(0, 0, height - 100), T_brick, null));
+            objList.Add(new Rect(new V3(width - 50, 1000, 50), new V3(0, -1000, 0), new V3(0, 0, height - 100), T_brick, null));
             //milieu
-            objlist.Add(new Rect(new V3(width / 2 + 100, 750, 50), new V3(0, -500, 0), new V3(0, 0, height / 3), T_brick, null));
+            objList.Add(new Rect(new V3(width / 2 + 100, 750, 50), new V3(0, -500, 0), new V3(0, 0, height / 3), T_brick, null));
             
 
             // RAY CASTING
 
             V3 Rd, R;
             float t, tnew;
+            bool[] occs = new bool[lampList.Count];
+
             //parcourir les pixels en x
             for (int pxx = 0; pxx < width; pxx++) {
                 //parcourir les pixels en z
@@ -67,17 +70,19 @@ namespace Projet_IMA
                     Rd = new V3(pxx - camera.x, -camera.y, pxz - camera.z);
                     Rd.Normalize();
                     // parcourir la liste des objets
-                    foreach (Objet3D obj in objlist) {
+                    foreach (Objet3D obj in objList) {
                         // appeler l'intersection et récupérer le point
                         tnew = obj.getIntersect(Rd, camera);
                         if (tnew != -1)
                         {
-                            if (tnew < t)
+                            if (tnew <= t)
                             {
                                 t = tnew;
                                 // R est le point d'intersection de Rd et de l'objet
                                 R = camera + t * Rd;
-                                Couleur finalColor = obj.DrawPoint(C_ambiant, lampList, camera, R);
+                                occs = obj.occultation(R, objList, lampList);
+                                //Console.WriteLine(occs[0]+" "+occs[1]);
+                                Couleur finalColor = obj.DrawPoint(C_ambiant, lampList, camera, R, occs);
                                 BitmapEcran.DrawPixel(pxx, pxz, finalColor);
                             }
                         }                          
