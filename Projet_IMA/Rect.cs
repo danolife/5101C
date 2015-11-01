@@ -72,7 +72,7 @@ namespace Projet_IMA
             }
         }*/
 
-        public override Couleur DrawPoint(Couleur C_ambiant, Lumiere L, V3 camera, V3 R)
+        public override Couleur DrawPoint(Couleur C_ambiant, List<Lampe> lampList, V3 camera, V3 R)
         {
 
             V3 N = this.N;
@@ -97,7 +97,7 @@ namespace Projet_IMA
             // FIN BUMP MAP 
             
             Point I = new Point(C_obj, C_ambiant, N, O, this.k);
-            Couleur finalColor = computeLights(I, L);
+            Couleur finalColor = computeLights(I, lampList);
             return finalColor;
         }
 
